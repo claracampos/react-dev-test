@@ -15,7 +15,7 @@ const Post = (props) => {
       <p className="font-italic text-secondary p-0 m-0">
         {publishedAt.slice(0, 10)}
       </p>
-      <p onClick={() => setShowPost(!showPost)} className="display-4">
+      <p onClick={() => setShowPost(!showPost)} className="display-4 cursor">
         {title}
       </p>
       <button
