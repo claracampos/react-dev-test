@@ -11,14 +11,32 @@ const Post = (props) => {
   const [showPost, setShowPost] = useState(false);
 
   return (
-    <div>
-      <p onClick={() => setShowPost(!showPost)}>{title}</p>
-      <button onClick={() => setFilter({ name: author.name, id: author.id })}>
-        {author.name}
+    <div className="border p-2">
+      <p className="font-italic text-secondary p-0 m-0">
+        {publishedAt.slice(0, 10)}
+      </p>
+      <p onClick={() => setShowPost(!showPost)} className="display-4">
+        {title}
+      </p>
+      <button
+        onClick={() => setFilter({ name: author.name, id: author.id })}
+        className="btn btn-outline-dark btn-sm mb-2"
+      >
+        by {author.name}
       </button>
-      <p>{publishedAt}</p>
-      <p>summary: {summary}...</p>
-      {showPost && <Markdown>{body}</Markdown>}
+      {!showPost ? (
+        <p>Summary: {summary}...</p>
+      ) : (
+        <div>
+          <Markdown>{body}</Markdown>
+          <button
+            onClick={() => setShowPost(false)}
+            className="btn btn-outline-dark btn-sm mb-2"
+          >
+            Show less
+          </button>
+        </div>
+      )}
     </div>
   );
 };
