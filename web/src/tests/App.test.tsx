@@ -5,6 +5,10 @@ import ReactDOM from 'react-dom';
 import renderer from 'react-test-renderer';
 import { App } from '../App';
 import testData from './fixtures/testData';
+import {
+  contextWithFilter,
+  contextWithoutFilter,
+} from './fixtures/testContext';
 import Post from '../components/Post';
 import AppContext from '../context/AppContext';
 import ListOfPosts from '../components/ListOfPosts';
@@ -21,7 +25,7 @@ test('renders Post correctly', () => {
 
   const testPost = renderer
     .create(
-      <AppContext.Provider value={{ setFilter: console.log('setFilter') }}>
+      <AppContext.Provider value={contextWithoutFilter}>
         <Post post={post} />
       </AppContext.Provider>
     )
@@ -29,10 +33,21 @@ test('renders Post correctly', () => {
   expect(testPost).toMatchSnapshot();
 });
 
-test('renders ListOfPosts correctly', () => {
+test('renders unfiltered ListOfPosts correctly', () => {
   const testList = renderer
     .create(
-      <AppContext.Provider value={{ fetchedData: testData, filter: false }}>
+      <AppContext.Provider value={contextWithoutFilter}>
+        <ListOfPosts />
+      </AppContext.Provider>
+    )
+    .toJSON();
+  expect(testList).toMatchSnapshot();
+});
+
+test('renders filtered ListOfPosts correctly', () => {
+  const testList = renderer
+    .create(
+      <AppContext.Provider value={contextWithFilter}>
         <ListOfPosts />
       </AppContext.Provider>
     )
@@ -43,9 +58,7 @@ test('renders ListOfPosts correctly', () => {
 test('renders filteredListHeader correctly', () => {
   const testHeader = renderer
     .create(
-      <AppContext.Provider
-        value={{ filter: false, setFilter: console.log('setFilter') }}
-      >
+      <AppContext.Provider value={contextWithFilter}>
         <FilteredListHeader />
       </AppContext.Provider>
     )
@@ -56,13 +69,7 @@ test('renders filteredListHeader correctly', () => {
 test('renders filtered PostsView correctly', () => {
   const testPostsViewWithFilter = renderer
     .create(
-      <AppContext.Provider
-        value={{
-          filter: testData[0].author,
-          setFilter: console.log('setFilter'),
-          fetchedData: testData,
-        }}
-      >
+      <AppContext.Provider value={contextWithFilter}>
         <PostsView />
       </AppContext.Provider>
     )
@@ -73,13 +80,7 @@ test('renders filtered PostsView correctly', () => {
 test('renders PostsView without filter correctly', () => {
   const testPostsViewWithFilter = renderer
     .create(
-      <AppContext.Provider
-        value={{
-          filter: false,
-          setFilter: console.log('setFilter'),
-          fetchedData: testData,
-        }}
-      >
+      <AppContext.Provider value={contextWithoutFilter}>
         <PostsView />
       </AppContext.Provider>
     )
