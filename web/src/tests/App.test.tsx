@@ -9,6 +9,7 @@ import testData from './fixtures/testData';
 import Post from '../components/Post';
 import AppContext from '../context/AppContext';
 import ListOfPosts from '../components/ListOfPosts';
+import FilteredListHeader from '../components/FilteredListHeader';
 
 test('renders without crashing', () => {
   const div = document.createElement('div');
@@ -37,4 +38,17 @@ test('renders ListOfPosts correctly', () => {
     )
     .toJSON();
   expect(testList).toMatchSnapshot();
+});
+
+test('renders filteredListHeader correctly', () => {
+  const testHeader = renderer
+    .create(
+      <AppContext.Provider
+        value={{ filter: false, setFilter: console.log('setFilter') }}
+      >
+        <FilteredListHeader />
+      </AppContext.Provider>
+    )
+    .toJSON();
+  expect(testHeader).toMatchSnapshot();
 });

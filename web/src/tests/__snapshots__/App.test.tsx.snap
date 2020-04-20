@@ -346,3 +346,19 @@ Lorem markdownum adhuc securosque, suo ponto satae se adhu
   </p>
 </div>
 `;
+
+exports[`renders filteredListHeader correctly 1`] = `
+<div>
+  <h1
+    className="display-4"
+  >
+    Posts by 
+  </h1>
+  <p
+    className="btn btn-secondary btn-sm mt-2"
+    onClick={[Function]}
+  >
+    View posts by all authors
+  </p>
+</div>
+`;
