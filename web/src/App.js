@@ -33,7 +33,7 @@ export function App() {
   }
 
   const posts = filter
-    ? sortByDate(filterByAuthor(fetchedData))
+    ? sortByDate(filterByAuthor(fetchedData, filter.id))
     : sortByDate(fetchedData);
 
   return (
