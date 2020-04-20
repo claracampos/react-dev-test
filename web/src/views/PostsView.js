@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import FilteredListHeader from '../components/FilteredListHeader';
 import ListOfPosts from '../components/ListOfPosts';
+import AppContext from '../context/AppContext';
 
 const PostsView = () => {
+  const { filter } = useContext(AppContext);
+
   return (
     <div>
-      <h1>Posts</h1>
+      {filter ? <FilteredListHeader /> : <h1>Posts</h1>}
       <ListOfPosts />
     </div>
   );
