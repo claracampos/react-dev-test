@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
 import Post from './Post';
 import AppContext from '../context/AppContext';
-import sortByDate from './utils/sortByDate';
-import filterByAuthor from './utils/filterByAuthor';
+import sortByDate from '../utils/sortByDate';
+import filterByAuthor from '../utils/filterByAuthor';
 
 const ListOfPosts = () => {
-  const { fetchedData } = useContext(AppContext);
+  const { fetchedData, filter } = useContext(AppContext);
+
   const posts = filter
     ? sortByDate(filterByAuthor(fetchedData, filter.id))
     : sortByDate(fetchedData);
