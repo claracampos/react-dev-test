@@ -7,21 +7,19 @@ import PostsView from './views/PostsView';
 export function App() {
   const [fetchedData, setFetchedData] = useState(false);
   const [error, setError] = useState(false);
+  const [filter, setFilter] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get('http://localhost:4000/posts');
         setFetchedData(response.data);
-        console.log('response', response);
       } catch (error) {
         setError(error);
       }
     };
     fetchData();
   }, [setFetchedData, setError]);
-
-  console.log('state', fetchedData);
 
   if (error) {
     return <ErrorView error={error} />;
