@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const Post = (props) => {
   const { title, body, author, publishedAt } = props.post;
+  const [showPost, setShowPost] = useState();
+
   return (
     <div>
       <p>{title}</p>
