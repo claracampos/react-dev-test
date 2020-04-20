@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import './App.css';
+import Post from './components/Post';
 
 export function App() {
   const [fetchedData, setFetchedData] = useState();
@@ -23,7 +23,11 @@ export function App() {
   return (
     <div className="App">
       <h1>App</h1>
-      {fetchedData ? 'data.' : 'loading...'}
+      {fetchedData ? (
+        fetchedData.map((post) => <Post post={post} />)
+      ) : (
+        <p>Loading...</p>
+      )}
     </div>
   );
 }
