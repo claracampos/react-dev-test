@@ -10,6 +10,7 @@ import Post from '../components/Post';
 import AppContext from '../context/AppContext';
 import ListOfPosts from '../components/ListOfPosts';
 import FilteredListHeader from '../components/FilteredListHeader';
+import PostsView from '../views/PostsView';
 
 test('renders without crashing', () => {
   const div = document.createElement('div');
@@ -51,4 +52,38 @@ test('renders filteredListHeader correctly', () => {
     )
     .toJSON();
   expect(testHeader).toMatchSnapshot();
+});
+
+test('renders filtered PostsView correctly', () => {
+  const testPostsViewWithFilter = renderer
+    .create(
+      <AppContext.Provider
+        value={{
+          filter: testData[0].author,
+          setFilter: console.log('setFilter'),
+          fetchedData: testData,
+        }}
+      >
+        <PostsView />
+      </AppContext.Provider>
+    )
+    .toJSON();
+  expect(testPostsViewWithFilter).toMatchSnapshot();
+});
+
+test('renders PostsView without filter correctly', () => {
+  const testPostsViewWithFilter = renderer
+    .create(
+      <AppContext.Provider
+        value={{
+          filter: false,
+          setFilter: console.log('setFilter'),
+          fetchedData: testData,
+        }}
+      >
+        <PostsView />
+      </AppContext.Provider>
+    )
+    .toJSON();
+  expect(testPostsViewWithFilter).toMatchSnapshot();
 });
