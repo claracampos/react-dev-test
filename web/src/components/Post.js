@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import createPostSummary from '../utils/createPostSummary';
 import AppContext from '../context/AppContext';
+import Markdown from 'markdown-to-jsx';
 
 const Post = (props) => {
   const { title, body, author, publishedAt } = props.post;
@@ -17,7 +18,7 @@ const Post = (props) => {
       </button>
       <p>{publishedAt}</p>
       <p>summary: {summary}...</p>
-      {showPost && <p>{body}</p>}
+      {showPost && <Markdown>{body}</Markdown>}
     </div>
   );
 };
