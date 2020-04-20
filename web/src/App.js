@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Post from './components/Post';
+import ErrorView from './views/ErrorView';
+import LoadingView from './views/LoadingView';
+import PostsView from './views/PostsView';
 
 export function App() {
   const [fetchedData, setFetchedData] = useState(false);
@@ -21,14 +23,13 @@ export function App() {
 
   console.log('state', fetchedData);
 
-  return (
-    <div className="App">
-      <h1>App</h1>
-      {fetchedData ? (
-        fetchedData.map((post) => <Post post={post} />)
-      ) : (
-        <p>Loading...</p>
-      )}
-    </div>
-  );
+  if (error) {
+    return <ErrorView error={error} />;
+  }
+
+  if (!fetchedData) {
+    return <LoadingView />;
+  }
+
+  return <PostsView posts={fetchedData} />;
 }
