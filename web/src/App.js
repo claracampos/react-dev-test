@@ -4,8 +4,6 @@ import ErrorView from './views/ErrorView';
 import LoadingView from './views/LoadingView';
 import PostsView from './views/PostsView';
 import AppContext from './context/AppContext';
-import sortByDate from './utils/sortByDate';
-import filterByAuthor from './utils/filterByAuthor';
 
 export function App() {
   const [fetchedData, setFetchedData] = useState(false);
@@ -32,12 +30,8 @@ export function App() {
     return <LoadingView />;
   }
 
-  const posts = filter
-    ? sortByDate(filterByAuthor(fetchedData, filter.id))
-    : sortByDate(fetchedData);
-
   return (
-    <AppContext.Provider value={{ filter, setFilter, posts }}>
+    <AppContext.Provider value={{ filter, setFilter, fetchedData }}>
       <PostsView />
     </AppContext.Provider>
   );
