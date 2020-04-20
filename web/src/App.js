@@ -3,7 +3,8 @@ import axios from 'axios';
 import Post from './components/Post';
 
 export function App() {
-  const [fetchedData, setFetchedData] = useState();
+  const [fetchedData, setFetchedData] = useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -12,11 +13,11 @@ export function App() {
         setFetchedData(response.data);
         console.log('response', response);
       } catch (error) {
-        console.log(error);
+        setError(error);
       }
     };
     fetchData();
-  }, [setFetchedData]);
+  }, [setFetchedData, setError]);
 
   console.log('state', fetchedData);
 
