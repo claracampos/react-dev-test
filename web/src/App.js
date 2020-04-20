@@ -36,5 +36,9 @@ export function App() {
     ? sortByDate(filterByAuthor(fetchedData))
     : sortByDate(fetchedData);
 
-  return <PostsView posts={posts} />;
+  return (
+    <AppContext.Provider value={{ filter, setFilter, posts }}>
+      <PostsView />
+    </AppContext.Provider>
+  );
 }
