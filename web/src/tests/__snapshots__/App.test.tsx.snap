@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Post correctly 1`] = `
+<div
+  className="border p-2"
+>
+  <p
+    className="font-italic text-secondary p-0 m-0"
+  >
+    Mon Dec 14
+  </p>
+  <p
+    className="display-4 cursor"
+    onClick={[Function]}
+  >
+    Dulcinea
+  </p>
+  <button
+    className="btn btn-outline-dark btn-sm mb-2"
+    onClick={[Function]}
+  >
+    by 
+    Terry McDonough
+  </button>
+  <p>
+    Summary: 
+    Omnibus quae
+
+Sit sed inque teneris
+
+Lorem markdownum adhuc securosque, suo ponto satae se adhu
+    ...
+  </p>
+</div>
+`;
