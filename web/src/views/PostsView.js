@@ -7,8 +7,12 @@ const PostsView = () => {
   const { filter } = useContext(AppContext);
 
   return (
-    <div>
-      {filter ? <FilteredListHeader /> : <h1>Posts</h1>}
+    <div className="p-3 container-sm">
+      {filter ? (
+        <FilteredListHeader />
+      ) : (
+        <h1 className="display-3">All Posts</h1>
+      )}
       <ListOfPosts />
     </div>
   );
