@@ -6,15 +6,14 @@ import Markdown from 'markdown-to-jsx';
 const Post = (props) => {
   const { title, body, author, publishedAt } = props.post;
   const summary = createPostSummary(body);
+  const date = publishedAt.toString().slice(0, 10);
 
   const { setFilter } = useContext(AppContext);
   const [showPost, setShowPost] = useState(false);
 
   return (
     <div className="border p-2">
-      <p className="font-italic text-secondary p-0 m-0">
-        {publishedAt.slice(0, 10)}
-      </p>
+      <p className="font-italic text-secondary p-0 m-0">{date}</p>
       <p onClick={() => setShowPost(!showPost)} className="display-4 cursor">
         {title}
       </p>
