@@ -4,15 +4,15 @@ import createPostSummary from '../utils/createPostSummary';
 const Post = (props) => {
   const { title, body, author, publishedAt } = props.post;
   const summary = createPostSummary(body);
-  const [showPost, setShowPost] = useState();
+  const [showPost, setShowPost] = useState(false);
 
   return (
     <div>
-      <p>{title}</p>
+      <p onClick={() => setShowPost(!showPost)}>{title}</p>
       <p>{author.name}</p>
       <p>{publishedAt}</p>
       <p>summary: {summary}...</p>
-      <p>{body}</p>
+      {showPost && <p>{body}</p>}
     </div>
   );
 };
